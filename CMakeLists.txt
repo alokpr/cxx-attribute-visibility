@@ -16,5 +16,8 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 add_library(module1 SHARED module1.cc)
 add_library(module2 SHARED module2.cc)
 
-add_executable(app app.cc)
-target_link_libraries(app PRIVATE module1 module2)
+add_executable(app_linked app_linked.cc)
+target_link_libraries(app_linked PRIVATE module1 module2)
+
+add_executable(app_plugin app_plugin.cc)
+target_link_libraries(app_plugin PRIVATE dl)
