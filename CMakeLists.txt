@@ -4,12 +4,13 @@ project(cxx-attribute-visibility LANGUAGES "CXX")
 
 # Commenting out the following line will set visibility to default.
 #
-# With visibility=default, the symbols defined in libcommon.a will be exported
-# as global symbols in both - libmodule1.so and libmodule2.so - that will be
-# de-duplicated by the dynamic linker at runtime.
+# With visibility=default,
+# Generator::Next() will be exported as a weak symbol (W)
+# Generator::Next()::next will be exported as unique global symbol (u)
+# The dynamic linker will de-duplicate and resolve those at runtime.
 #
-# With visibility=hidden, the symbols defined in libcommon.a become private to
-# libmodule1.so and libmodule2.so.
+# With visibility=hidden, all Generator symbols become private to libmodule1.so
+# and libmodule2.so.
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 add_library(module1 SHARED module1.cc)
