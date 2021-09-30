@@ -1,8 +1,12 @@
 #ifndef NEXT_H_
 #define NEXT_H_
 
-namespace common {
-int Next();
-}  // namespace common
+class Generator {
+public:
+  static int Next() {
+    static int next;
+    return ++next;
+  }
+};
 
-#endif  // NEXT_H_
+#endif // NEXT_H_

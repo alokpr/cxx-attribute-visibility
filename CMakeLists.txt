@@ -12,13 +12,8 @@ project(cxx-attribute-visibility LANGUAGES "CXX")
 # libmodule1.so and libmodule2.so.
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-add_library(common STATIC next.cc)
-
 add_library(module1 SHARED module1.cc)
-target_link_libraries(module1 PRIVATE common)
-
 add_library(module2 SHARED module2.cc)
-target_link_libraries(module2 PRIVATE common)
 
 add_executable(app app.cc)
 target_link_libraries(app PRIVATE module1 module2)
