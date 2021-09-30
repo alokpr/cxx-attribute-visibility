@@ -6,14 +6,13 @@
 using NextFunc = int (*)();
 
 class Module {
-public:
+ public:
   ~Module() {
-    if (module_)
-      dlclose(module_);
+    if (module_) dlclose(module_);
   }
 
   bool Init(const char *filename, const char *symbol) {
-    module_ = dlopen(filename, RTLD_NOW);
+    module_ = dlopen(filename, RTLD_NOW | RTLD_LOCAL);
     if (!module_) {
       std::cerr << "Failed to open: " << filename << "\n";
       return false;
@@ -30,7 +29,7 @@ public:
 
   int Next() { return next_(); }
 
-private:
+ private:
   void *module_ = nullptr;
   NextFunc next_ = nullptr;
 };

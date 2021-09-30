@@ -1,7 +1,9 @@
 #include "module2.h"
 
-#include "generator.h"
+#include "detail.h"
 
 namespace module2 {
-int Next() { return Generator::Next(); }
+
+int Next() { return detail::Next(); }
+
 }  // namespace module2
